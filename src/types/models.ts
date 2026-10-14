@@ -132,6 +132,8 @@ export interface Dish {
   steps: DishStep[];
   nutrition?: Nutrition;
   source?: string;
+  /** [BỔ SUNG] Ghi công ảnh (tác giả, giấy phép) – bắt buộc với ảnh CC BY / CC BY-SA */
+  imageCredits?: { author: string; license: string; url: string }[];
   /** Thời điểm xuất bản lần đầu – dùng cho “Món mới” (mục 6.5) */
   publishedAt?: ISODate;
   /** Phiên bản để phát hiện xung đột khi hai quản trị viên cùng sửa (UC54) */

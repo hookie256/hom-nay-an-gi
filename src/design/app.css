@@ -281,3 +281,12 @@ code { font-size: 0.9em; background: var(--color-surface-2); padding: 1px 6px; b
 .table-wrap .table { min-width: 640px; }
 .table td.small { min-width: 140px; }
 .code { white-space: nowrap; }
+
+/* Ảnh món thật */
+.dish-hero__figure { margin: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+@media (min-width: 960px) { .dish-hero__figure { position: sticky; top: calc(var(--header-h) + 16px); } .dish-hero__media { position: static; } }
+.dish-hero__figure figcaption a { color: var(--color-text-subtle); }
+.dish-card__img { transition: transform 300ms ease; }
+.dish-card:hover .dish-card__img { transform: scale(1.04); }
+.dish-card__media { overflow: hidden; }
+.dish-card__media::after { content: ''; position: absolute; inset: auto 0 0 0; height: 40%; background: linear-gradient(to top, rgba(0,0,0,.18), transparent); pointer-events: none; }

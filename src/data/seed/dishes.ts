@@ -1,4 +1,5 @@
 import type { Difficulty, Dish, DishStatus } from '@/types/models';
+import { dishImageCredits } from './imageCredits';
 
 /**
  * Dữ liệu món ăn mẫu do nhóm biên soạn để chạy thử – CẦN quản trị viên rà soát định lượng và các bước
@@ -40,7 +41,8 @@ function build(spec: DishSpec, index: number): Dish {
     slug: spec.slug,
     name: spec.name,
     description: spec.description,
-    images: [],
+    images: dishImageCredits[spec.slug] ? [`/images/dishes/${spec.slug}.jpg`] : [],
+    ...(dishImageCredits[spec.slug] ? { imageCredits: [{ author: dishImageCredits[spec.slug].author, license: dishImageCredits[spec.slug].license, url: dishImageCredits[spec.slug].url }] } : {}),
     mealSlotIds: spec.meals.map((m) => `cat-bua-${m}`),
     categoryIds: [...spec.types, ...(spec.tags ?? [])].map((t) => `cat-${t}`),
     cuisineIds: spec.cuisines.map((c) => `cat-${c}`),

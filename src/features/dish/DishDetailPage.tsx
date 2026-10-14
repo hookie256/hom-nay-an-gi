@@ -62,9 +62,16 @@ export function DishDetailPage() {
       </nav>
 
       <section className="dish-hero">
-        <div className="dish-hero__media">
-          <DishImage src={dish.images[0]} name={dish.name} className="dish-hero__img" eager />
-        </div>
+        <figure className="dish-hero__figure">
+          <div className="dish-hero__media">
+            <DishImage src={dish.images[0]} name={dish.name} className="dish-hero__img" eager />
+          </div>
+          {dish.imageCredits?.length ? (
+            <figcaption className="subtle">
+              Ảnh: {dish.imageCredits.map((c) => <a key={c.url} href={c.url} target="_blank" rel="noreferrer">{c.author} · {c.license} · Wikimedia Commons</a>)}
+            </figcaption>
+          ) : null}
+        </figure>
         <div className="dish-hero__info stack">
           <div className="row">
             {dish.mealSlots.map((c) => <Badge key={c._id} tone="primary">{c.name}</Badge>)}

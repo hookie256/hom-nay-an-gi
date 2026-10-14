@@ -149,6 +149,8 @@ route('PATCH', '/admin/dishes/:id', (ctx) => {
     dish.status = 'draft';
     reverted = true;
   }
+  // Ảnh đổi thì ghi công ảnh cũ không còn đúng
+  if (input.images.join('|') !== dish.images.join('|')) delete dish.imageCredits;
   Object.assign(dish, input, { version: dish.version + 1, updatedAt: ctx.now.toISOString() });
   if (input.dietCodes === undefined) delete dish.dietCodes;
   audit(ctx, 'dish', dish._id, 'update_dish', before, { ...pick(dish, ['name', 'status', 'baseServings', 'prepMinutes', 'cookMinutes']) });

@@ -45,7 +45,7 @@
 - **Cảnh báo về công thức (GD01, RR01):** công thức và định lượng do nhóm phát triển tự soạn để chạy thử, **chưa được chuyên môn rà soát**.
   - Gia vị như nước mắm, dầu ăn đang đánh dấu là “bắt buộc”, nên tỷ lệ khớp nguyên liệu thấp hơn mong đợi. Quản trị viên nên xem lại.
 - **Dinh dưỡng:** không có dữ liệu đã kiểm chứng nên để trống. Giao diện ghi “Chưa có dữ liệu” (RR11).
-- **Ảnh món:** tài liệu không cung cấp, nên giao diện dùng hình minh họa tạo từ tên món. Quản trị viên có thể nhập đường dẫn ảnh thật.
+- **Ảnh món:** ảnh chụp thật lấy từ Wikimedia Commons (CC0 / public domain / CC BY / CC BY-SA), lưu ở `public/images/dishes/`. Tác giả và giấy phép hiển thị dưới ảnh ở trang chi tiết và liệt kê trong [image-credits.md](image-credits.md). 15 món chưa có ảnh đúng món trên Commons nên dùng ảnh món tương tự để minh họa; nên thay bằng ảnh tự chụp khi có. Hình minh họa tạo từ tên món vẫn được dùng khi món không có ảnh hoặc ảnh lỗi.
 
 ## 4. API và hạ tầng còn thiếu (cần backend thật)
 

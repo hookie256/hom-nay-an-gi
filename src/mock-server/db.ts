@@ -35,7 +35,7 @@ export interface DbState {
 }
 
 const STORAGE_KEY = 'hnag-mock-db';
-const SCHEMA_VERSION = 1;
+const SCHEMA_VERSION = 2; // v2: thêm ảnh món thật
 
 let memory: DbState | null = null;
 

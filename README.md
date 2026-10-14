@@ -52,6 +52,7 @@ Mở http://localhost:5173.
 | Người dùng | `binh@homnayangi.test` | `User@123` | Có đơn đang chờ duyệt hủy |
 | Người dùng (bị khóa) | `khoa@homnayangi.test` | `User@123` | Dùng để kiểm thử “tài khoản bị khóa” |
 
+- **Ảnh món ăn:** ảnh thật từ Wikimedia Commons trong `public/images/dishes/`, ghi công ở `docs/image-credits.md`.
 - **Khôi phục dữ liệu mẫu:** đăng nhập super admin → *Quản trị → Sao lưu dữ liệu thử*, hoặc xóa `localStorage` key `hnag-mock-db`.
 - **Quên mật khẩu:** chưa có dịch vụ gửi email, nên liên kết đặt lại mật khẩu được hiển thị ngay trên màn hình (chỉ ở chế độ mock).
 
@@ -75,6 +76,7 @@ src/
 docs/
   traceability.md bảng đối chiếu FR01–FR51, NFR01–NFR23 với phần đã triển khai
   assumptions.md  giả định, điểm cần xác nhận, mock data, API còn thiếu
+  image-credits.md nguồn, tác giả, giấy phép của ảnh món ăn (Wikimedia Commons)
 ```
 
 ## Kết nối backend thật

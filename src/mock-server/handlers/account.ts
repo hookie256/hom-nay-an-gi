@@ -5,6 +5,7 @@ import { route } from '../router';
 import { Errors } from '../errors';
 import { hashPassword, newId, newToken, verifyPassword } from '../crypto';
 import { requireUser, SESSION_TTL_MS, str, toPublicUser } from '../helpers';
+import { serverConfig } from '../config';
 
 const RESET_TTL_MS = 30 * 60 * 1000;
 
@@ -86,7 +87,7 @@ route('POST', '/auth/forgot-password', (ctx) => {
     const token = newToken();
     ctx.db.password_reset_tokens.push({ _id: newId(), token, userId: user._id, expiresAt: new Date(ctx.now.getTime() + RESET_TTL_MS).toISOString() });
     // CHỈ Ở CHẾ ĐỘ MOCK: chưa có dịch vụ gửi email nên trả liên kết để chạy thử.
-    response.devResetLink = `/dat-lai-mat-khau?token=${token}`;
+    if (serverConfig.exposeResetLink) response.devResetLink = `/dat-lai-mat-khau?token=${token}`;
   }
   return response;
 });

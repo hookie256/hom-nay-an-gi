@@ -1,6 +1,6 @@
 import type { ApiErrorBody } from '@/types/api';
 
-const MODE = (import.meta.env.VITE_API_MODE as string | undefined) ?? 'mock';
+const MODE = (import.meta.env.VITE_API_MODE as string | undefined) ?? 'http';
 const BASE_URL = (import.meta.env.VITE_API_BASE_URL as string | undefined) ?? '/api';
 const TOKEN_KEY = 'hnag-token';
 

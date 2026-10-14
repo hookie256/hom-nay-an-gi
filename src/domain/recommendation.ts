@@ -148,8 +148,9 @@ export function recommend(input: RecommendInput): { ranked: RankedDish[]; emptyS
 
     if (targetMinutes && targetMinutes > 0) {
       components.time = total <= targetMinutes ? 1 : Math.max(0, 1 - (total - targetMinutes) / targetMinutes);
-      if (total <= targetMinutes) reasons.push(`Hoàn thành trong khoảng ${total} phút, trong giới hạn ${targetMinutes} phút đã chọn`);
-      else reasons.push(`Cần khoảng ${total} phút, lâu hơn ${targetMinutes} phút mong muốn`);
+      const source = input.maxMinutes ? 'đã chọn' : 'mong muốn trong hồ sơ';
+      if (total <= targetMinutes) reasons.push(`Hoàn thành trong khoảng ${total} phút, trong giới hạn ${targetMinutes} phút ${source}`);
+      else reasons.push(`Cần khoảng ${total} phút, lâu hơn ${targetMinutes} phút ${source}`);
     } else {
       reasons.push(`Thời gian chế biến khoảng ${total} phút`);
     }

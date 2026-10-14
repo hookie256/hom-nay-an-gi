@@ -39,7 +39,7 @@
   - 22 danh mục (1 thẻ đã ẩn).
   - 19 đơn vị (1 đơn vị ngừng dùng).
   - Khoảng 70 nguyên liệu, có tên gọi khác, nhãn dị ứng và nguyên liệu thay thế.
-  - 30 món: 28 đã xuất bản, 1 nháp thiếu bước nấu, 1 đã ẩn.
+  - 31 món: 29 đã xuất bản, 1 nháp thiếu bước nấu, 1 đã ẩn.
   - 10 món bán: 1 món tạm hết, 1 món có khung giờ riêng.
   - 5 tài khoản, 6 đơn ở nhiều trạng thái, đánh giá, báo cáo, sự kiện gợi ý và tìm kiếm.
 - **Cảnh báo về công thức (GD01, RR01):** công thức và định lượng do nhóm phát triển tự soạn để chạy thử, **chưa được chuyên môn rà soát**.

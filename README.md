@@ -70,7 +70,7 @@ src/
   features/       các trang theo nhóm chức năng (home, ingredients, explore, dish, auth, account, cart, orders, admin)
   services/       lớp gọi API duy nhất (apiClient + service theo nhóm) – đổi sang backend thật chỉ cần đổi env
   mock-server/    máy chủ giả: CSDL localStorage, router, handler cho từng nhóm API, kiểm tra quyền
-  data/seed/      dữ liệu mẫu: danh mục, đơn vị, ~70 nguyên liệu, 30 món, tài khoản, đơn hàng, sự kiện
+  data/seed/      dữ liệu mẫu: danh mục, đơn vị, 70 nguyên liệu, 31 món, tài khoản, đơn hàng, sự kiện
   types/          models.ts (theo Bảng 5.2–5.17), api.ts (hợp đồng API)
 docs/
   traceability.md bảng đối chiếu FR01–FR51, NFR01–NFR23 với phần đã triển khai

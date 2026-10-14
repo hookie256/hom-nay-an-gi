@@ -9,6 +9,7 @@ import { DEFAULT_TIMEZONE, MEAL_SLOT_HOURS, MEAL_SLOT_SLUGS, type MealSlotSlug }
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/contexts/ToastContext';
 import { useDocumentTitle, usePersistentState } from '@/hooks/misc';
+import { DishMarquee, HeroDeck, RotatingWord, SpinPicker, prefersReducedMotion } from './HeroBits';
 import { useQuery } from '@/hooks/useQuery';
 
 const SLOT_ICON: Record<MealSlotSlug, string> = { 'bua-sang': 'sunrise', 'bua-trua': 'sun', 'bua-chieu': 'sunset', 'bua-toi': 'moon' };
@@ -28,6 +29,8 @@ export function HomePage() {
   const [replacing, setReplacing] = useState<string | null>(null);
   const [exhausted, setExhausted] = useState<string | null>(null);
   const [tick, setTick] = useState(0);
+  const [pickedId, setPickedId] = useState<string | null>(null);
+  const marquee = useQuery(() => catalogService.dishes({ sort: 'relevance', pageSize: 24 }), []);
 
   useEffect(() => {
     let cancelled = false;
@@ -74,7 +77,11 @@ export function HomePage() {
         <div className="container hero__inner">
           <div className="hero__text">
             <p className="hero__eyebrow"><Icon name={SLOT_ICON[defaultSlot]} size={16} /> Bây giờ là giờ {MEAL_SLOT_HOURS[defaultSlot].label.toLowerCase()}</p>
-            <h1 className="hero__title">Hôm nay ăn gì?</h1>
+            <h1 className="hero__title">
+              <span className="sr-only">Hôm nay ăn gì?</span>
+              <span aria-hidden>Hôm nay ăn</span>
+              <RotatingWord words={['gì', ...(result?.items.map((i) => i.dish.name) ?? [])]} />
+            </h1>
             <p className="hero__lead">Chọn buổi ăn, hệ thống gợi ý món phù hợp kèm lý do. Không ưng thì bấm “Đổi món khác”.</p>
             <div className="hero__controls">
               <Segmented
@@ -91,17 +98,30 @@ export function HomePage() {
                 </Select>
               </label>
             </div>
+            <SpinPicker
+              dishes={result?.items.map((i) => i.dish) ?? []}
+              onPicked={(d) => {
+                setPickedId(d._id);
+                const el = document.getElementById(`rec-${d._id}`);
+                el?.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'center' });
+              }}
+            />
+            <Link to="/nguyen-lieu" className="hero__aside card">
+              <span className="hero__aside-icon"><Icon name="carrot" size={22} /></span>
+              <span>
+                <strong>Có sẵn nguyên liệu trong bếp?</strong>
+                <span className="muted small" style={{ display: 'block' }}>Nhập trứng, cà chua, hành… để xem món nấu được và thiếu gì.</span>
+              </span>
+              <Icon name="chevronRight" />
+            </Link>
           </div>
-          <Link to="/nguyen-lieu" className="hero__aside card">
-            <span className="hero__aside-icon"><Icon name="carrot" size={26} /></span>
-            <span>
-              <strong>Có sẵn nguyên liệu trong bếp?</strong>
-              <span className="muted small" style={{ display: 'block' }}>Nhập trứng, cà chua, hành… để xem món nấu được và thiếu gì.</span>
-            </span>
-            <Icon name="chevronRight" />
-          </Link>
+          <HeroDeck dishes={result?.items.map((i) => i.dish) ?? []} recId={result?.eventId} />
         </div>
+        <span className="hero__blob hero__blob--a" aria-hidden />
+        <span className="hero__blob hero__blob--b" aria-hidden />
       </section>
+
+      <DishMarquee dishes={marquee.data?.items ?? []} />
 
       <section className="container section" aria-labelledby="rec-title">
         <div className="row-between section__head">
@@ -131,9 +151,9 @@ export function HomePage() {
             </EmptyState>
           ) : (
             <div className={['grid-cards', loading && 'is-refreshing'].filter(Boolean).join(' ')}>
-              {result?.items.map((item) => (
+              {result?.items.map((item, idx) => (
+                <div key={item.dish._id} id={`rec-${item.dish._id}`} className={['card-enter', pickedId === item.dish._id && 'card-picked'].filter(Boolean).join(' ')} style={{ animationDelay: `${idx * 70}ms` }}>
                 <DishCard
-                  key={item.dish._id}
                   dish={item.dish}
                   recId={result.eventId}
                   reasons={item.reasons}
@@ -144,6 +164,7 @@ export function HomePage() {
                     </>
                   }
                 />
+                </div>
               ))}
             </div>
           )}

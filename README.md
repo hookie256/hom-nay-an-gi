@@ -74,6 +74,7 @@ src/
   data/seed/      dữ liệu mẫu: danh mục, đơn vị, 70 nguyên liệu, 31 món, tài khoản, đơn hàng, sự kiện
   types/          models.ts (theo Bảng 5.2–5.17), api.ts (hợp đồng API)
 docs/
+  code-database/  ảnh chụp mã nguồn tầng truy cập CSDL (MongoDB, localStorage)
   screenshots/    ảnh chụp giao diện theo từng tính năng (xem screenshots/README.md)
   traceability.md bảng đối chiếu FR01–FR51, NFR01–NFR23 với phần đã triển khai
   assumptions.md  giả định, điểm cần xác nhận, mock data, API còn thiếu
